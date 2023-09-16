@@ -13,8 +13,8 @@ public class homework_09 {
         String currency = "EUR";
 
         int banknote5Count = 0;
-        int banknote10Count = 10;
-        int banknote20Count = 23;
+        int banknote10Count = 0;
+        int banknote20Count = 0;
         int banknote50Count = 54;
         int banknote100Count = 11;
         int banknote200Count = 15;
@@ -41,6 +41,15 @@ public class homework_09 {
 
             switch (ans) {
                 case 1:
+                    boolean notEnoughBanknotes = false;
+
+                    int banknote200Diff = 0;
+                    int banknote100Diff = 0;
+                    int banknote50Diff = 0;
+                    int banknote20Diff = 0;
+                    int banknote10Diff = 0;
+                    int banknote5Diff = 0;
+
                     System.out.println("Enter sum you want to withdraw: ");
                     int requestedSum = scanner.nextInt();
 
@@ -50,7 +59,10 @@ public class homework_09 {
                             // 200 Euro bills
                             int banknotes200ToWithdraw = requestedSum / 200;
 
-                            if (banknotes200ToWithdraw >= banknote200Count) {
+                            if (banknotes200ToWithdraw > banknote200Count) {
+                                notEnoughBanknotes = true;
+                                banknote200Diff = banknotes200ToWithdraw - banknote200Count;
+
                                 banknotes200ToWithdraw = banknote200Count;
                                 requestedSum -= banknote200Count * 200;
                                 banknote200Count = 0;
@@ -62,7 +74,10 @@ public class homework_09 {
                             // 100 Euro bills
                             int banknotes100ToWithdraw = requestedSum / 100;
 
-                            if (banknotes100ToWithdraw >= banknote100Count) {
+                            if (banknotes100ToWithdraw > banknote100Count) {
+                                notEnoughBanknotes = true;
+                                banknote100Diff = banknotes100ToWithdraw - banknote100Count;
+
                                 banknotes100ToWithdraw = banknote100Count;
                                 requestedSum -= banknotes100ToWithdraw * 100;
                                 banknote100Count = 0;
@@ -74,7 +89,10 @@ public class homework_09 {
                             // 50 Euro bills
                             int banknotes50ToWithdraw = requestedSum / 50;
 
-                            if (banknotes50ToWithdraw >= banknote50Count) {
+                            if (banknotes50ToWithdraw > banknote50Count) {
+                                notEnoughBanknotes = true;
+                                banknote50Diff = banknotes50ToWithdraw - banknote50Count;
+
                                 banknotes50ToWithdraw = banknote50Count;
                                 requestedSum -= banknotes50ToWithdraw * 50;
                                 banknote50Count = 0;
@@ -86,7 +104,10 @@ public class homework_09 {
                             // 20 Euro bills
                             int banknotes20ToWithdraw = requestedSum / 20;
 
-                            if (banknotes20ToWithdraw >= banknote20Count) {
+                            if (banknotes20ToWithdraw > banknote20Count) {
+                                notEnoughBanknotes = true;
+                                banknote20Diff = banknotes20ToWithdraw - banknote20Count;
+
                                 banknotes20ToWithdraw = banknote20Count;
                                 requestedSum -= banknotes20ToWithdraw * 20;
                                 banknote20Count = 0;
@@ -98,7 +119,10 @@ public class homework_09 {
                             // 10 Euro bills
                             int banknotes10ToWithdraw = requestedSum / 10;
 
-                            if (banknotes10ToWithdraw >= banknote10Count) {
+                            if (banknotes10ToWithdraw > banknote10Count) {
+                                notEnoughBanknotes = true;
+                                banknote10Diff = banknotes10ToWithdraw - banknote10Count;
+
                                 banknotes10ToWithdraw = banknote10Count;
                                 requestedSum -= banknotes10ToWithdraw * 10;
                                 banknote10Count = 0;
@@ -110,7 +134,10 @@ public class homework_09 {
                             // 5 Euro bills
                             int banknotes5ToWithdraw = requestedSum / 5;
 
-                            if (banknotes5ToWithdraw >= banknote5Count) {
+                            if (banknotes5ToWithdraw > banknote5Count) {
+                                notEnoughBanknotes = true;
+                                banknote5Diff = banknotes5ToWithdraw - banknote5Count;
+
                                 banknotes5ToWithdraw = banknote5Count;
                                 requestedSum -= banknotes5ToWithdraw * 5;
                                 banknote5Count = 0;
@@ -127,9 +154,22 @@ public class homework_09 {
                                             banknotes20ToWithdraw * 20 +
                                             banknotes10ToWithdraw * 10 +
                                             banknotes5ToWithdraw * 5;
+                            if(notEnoughBanknotes) {
+                                System.out.printf(
+                                        "These is not enough banknotes for this transaction: \nWe need at least: \n200 Banknotes: %d\n100 Banknotes: %d\n50 Banknotes: %d\n20 Banknotes: %d\n10 Banknotes: %d\n5 Banknotes: %d\n",
+                                        banknote200Diff,
+                                        banknote100Diff,
+                                        banknote50Diff,
+                                        banknote20Diff,
+                                        banknote10Diff,
+                                        banknote5Diff
+                                );
 
-                            System.out.println("Please, take your money...");
-                            System.out.printf("Amount withdrawn: '%d' %s\n", totalSum, currency);
+                                System.out.printf("Max amount available for withdrawal is: '%d' %s", totalSum, currency);
+                            } else {
+                                System.out.println("Please, take your money...");
+                                System.out.printf("Amount withdrawn: '%d' %s\n", totalSum, currency);
+                            }
 
                             System.out.println();
                         } else {
