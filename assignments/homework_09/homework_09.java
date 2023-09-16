@@ -20,6 +20,7 @@ public class homework_09 {
         int banknote200Count = 15;
 
         int balance = 0;
+        float savingsRate = 0.02f;
 
         balance = banknote5Count * 5 +
                 banknote10Count * 10 +
@@ -33,6 +34,7 @@ public class homework_09 {
             System.out.println("1. Withdraw money");
             System.out.println("2. Deposit money");
             System.out.println("3. Account balance");
+            System.out.println("4. Savings");
             System.out.println("0. Exit");
 
             int ans = scanner.nextInt();
@@ -127,14 +129,14 @@ public class homework_09 {
                                             banknotes5ToWithdraw * 5;
 
                             System.out.println("Please, take your money...");
-                            System.out.printf("Amount withdrawn: '%d' %s", totalSum, currency);
+                            System.out.printf("Amount withdrawn: '%d' %s\n", totalSum, currency);
 
                             System.out.println();
                         } else {
                             System.err.println("Please enter the valid amount of money you want to withdraw.");
                         }
                     } else {
-                        System.err.println("Not enough money on your balance.");
+                        System.err.println("Error: not enough money on your balance.");
 
                         System.out.println();
                     }
@@ -154,52 +156,52 @@ public class homework_09 {
 
                         System.out.println("Please choose banknotes you want to deposit: ");
 
-                        System.out.printf("1. 200 %s banknotes", currency);
-                        System.out.printf("2. 100 %s banknotes", currency);
-                        System.out.printf("3. 50 %s banknotes", currency);
-                        System.out.printf("4. 20 %s banknotes", currency);
-                        System.out.printf("5. 10 %s banknotes", currency);
-                        System.out.printf("6. 5 %s banknotes", currency);
+                        System.out.printf("1. 200 %s banknotes\n", currency);
+                        System.out.printf("2. 100 %s banknotes\n", currency);
+                        System.out.printf("3. 50 %s banknotes\n", currency);
+                        System.out.printf("4. 20 %s banknotes\n", currency);
+                        System.out.printf("5. 10 %s banknotes\n", currency);
+                        System.out.printf("6. 5 %s banknotes\n", currency);
                         System.out.println("0. Exit");
 
                         int depositAns = scanner.nextInt();
 
                         switch (depositAns) {
                             case 1:
-                                System.out.printf("Please enter 200 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 200 %s banknote amount: \n", currency);
                                 int deposit200Current = scanner.nextInt();
                                 deposit200Count += deposit200Current;
-                                System.out.printf("Deposited: '%d' %s", deposit200Current * 200, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit200Current * 200, currency);
                                 break;
                             case 2:
-                                System.out.printf("Please enter 100 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 100 %s banknote amount: \n", currency);
                                 int deposit100Current = scanner.nextInt();
                                 deposit100Count += deposit100Current;
-                                System.out.printf("Deposited: '%d' %s", deposit100Current * 100, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit100Current * 100, currency);
                                 break;
                             case 3:
-                                System.out.printf("Please enter 50 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 50 %s banknote amount: \n", currency);
                                 int deposit50Current = scanner.nextInt();
                                 deposit50Count += deposit50Current;
-                                System.out.printf("Deposited: '%d' %s", deposit50Current * 50, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit50Current * 50, currency);
                                 break;
                             case 4:
-                                System.out.printf("Please enter 20 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 20 %s banknote amount: \n", currency);
                                 int deposit20Current = scanner.nextInt();
                                 deposit20Count += deposit20Current;
-                                System.out.printf("Deposited: '%d' %s", deposit20Current * 20, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit20Current * 20, currency);
                                 break;
                             case 5:
-                                System.out.printf("Please enter 10 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 10 %s banknote amount: \n", currency);
                                 int deposit10Current = scanner.nextInt();
                                 deposit10Count += deposit10Current;
-                                System.out.printf("Deposited: '%d' %s", deposit10Current * 10, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit10Current * 10, currency);
                                 break;
                             case 6:
-                                System.out.printf("Please enter 5 %s banknote amount: ", currency);
+                                System.out.printf("Please enter 5 %s banknote amount: \n", currency);
                                 int deposit5Current = scanner.nextInt();
                                 deposit5Count += deposit5Current;
-                                System.out.printf("Deposited: '%d' %s", deposit5Current * 5, currency);
+                                System.out.printf("Deposited: '%d' %s\n", deposit5Current * 5, currency);
                                 break;
                             case 0:
                                 isDepositRunning = false;
@@ -233,9 +235,103 @@ public class homework_09 {
                             banknote50Count * 50 +
                             banknote100Count * 100 +
                             banknote200Count * 200;
-                    System.out.printf("Your current balance: '%d' %s", balance, currency);
+
+                    System.out.printf("Your current balance: '%d' %s\n", balance, currency);
 
                     System.out.println();
+                    break;
+                case 4:
+                    boolean isSavingsRunning = true;
+
+                    int savings200Count = 0;
+                    int savings100Count = 0;
+                    int savings50Count = 0;
+                    int savings20Count = 0;
+                    int savings10Count = 0;
+                    int savings5Count = 0;
+
+                    while (isSavingsRunning) {
+                        System.out.println();
+
+                        System.out.println("Please choose banknotes you want to deposit: ");
+
+                        System.out.printf("1. 200 %s banknotes\n", currency);
+                        System.out.printf("2. 100 %s banknotes\n", currency);
+                        System.out.printf("3. 50 %s banknotes\n", currency);
+                        System.out.printf("4. 20 %s banknotes\n", currency);
+                        System.out.printf("5. 10 %s banknotes\n", currency);
+                        System.out.printf("6. 5 %s banknotes\n", currency);
+                        System.out.println("0. Exit");
+
+                        int savingsAns = scanner.nextInt();
+
+                        switch (savingsAns) {
+                            case 1:
+                                System.out.printf("Please enter 200 %s banknote amount: \n", currency);
+                                int savings200Current = scanner.nextInt();
+                                savings200Count += savings200Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings200Current * 200, currency);
+                                break;
+                            case 2:
+                                System.out.printf("Please enter 100 %s banknote amount: \n", currency);
+                                int savings100Current = scanner.nextInt();
+                                savings100Count += savings100Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings100Current * 100, currency);
+                                break;
+                            case 3:
+                                System.out.printf("Please enter 50 %s banknote amount: \n", currency);
+                                int savings50Current = scanner.nextInt();
+                                savings50Count += savings50Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings50Current * 50, currency);
+                                break;
+                            case 4:
+                                System.out.printf("Please enter 20 %s banknote amount: \n", currency);
+                                int savings20Current = scanner.nextInt();
+                                savings20Count += savings20Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings20Current * 20, currency);
+                                break;
+                            case 5:
+                                System.out.printf("Please enter 10 %s banknote amount: \n", currency);
+                                int savings10Current = scanner.nextInt();
+                                savings10Count += savings10Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings10Current * 10, currency);
+                                break;
+                            case 6:
+                                System.out.printf("Please enter 5 %s banknote amount: \n", currency);
+                                int savings5Current = scanner.nextInt();
+                                savings5Count += savings5Current;
+                                System.out.printf("Deposited: '%d' %s\n", savings5Current * 5, currency);
+                                break;
+                            case 0:
+                                isSavingsRunning = false;
+                                break;
+                            default:
+                                System.err.println("Please enter the valid input.");
+                                break;
+                        }
+                    }
+
+                    int totalSavingsAmount = savings200Count * 200 +
+                            savings100Count * 100 +
+                            savings50Count * 50 +
+                            savings20Count * 20 +
+                            savings10Count * 10 +
+                            savings5Count * 5;
+                    if (totalSavingsAmount <= balance && totalSavingsAmount != 0) {
+
+                        int savedIn5Months = 0;
+
+                        for (int i = 0; i < 5; i++) {
+                            savedIn5Months += (int) (totalSavingsAmount * savingsRate);
+                            totalSavingsAmount += totalSavingsAmount * savingsRate;
+                        }
+
+                        System.out.printf("In 5 months you are gonna save: '%d' %s (%d %s)\n", savedIn5Months, currency, totalSavingsAmount, currency);
+                    } else if (totalSavingsAmount >= balance) {
+                        System.err.println("Error: not enough money on your balance.");
+                    } else {
+                        System.err.println("Error: invalid input.");
+                    }
                     break;
                 case 0:
                     System.out.println("Thank you for using our services!");
