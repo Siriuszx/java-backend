@@ -36,13 +36,18 @@ public class homework_18 {
         System.out.println();
 
         Dog sally = new Dog("Sally", 100);
+        Dog fluffy = new Dog("Fluffy", 200);
 
         sally.jumpOverBarrier(190);
+        fluffy.train();
 
         for (int i = 0; i < 11; i++) {
             sally.train();
         }
 
         sally.jumpOverBarrier(190);
+        fluffy.jumpOverBarrier(100);
+
+        System.out.printf("Total jump count made by dogs: %d\n", Dog.getJumpsCount());
     }
 }
