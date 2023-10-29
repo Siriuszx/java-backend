@@ -1,22 +1,22 @@
-package homework_34;
+package homework_37;
 
-import java.util.Iterator;
-import java.util.ListIterator;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
-public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
-    private T[] array;
+public class MySimpleArrayList {
+    private LocalDate[] array;
 
-    public MyIterableArrayList() {
-        array = (T[]) new Object[0];
+    public MySimpleArrayList() {
+        array = new LocalDate[0];
     }
 
-    public MyIterableArrayList(int sizeDefault) {
-        array = (T[]) new Object[sizeDefault];
+    public MySimpleArrayList(int sizeDefault) {
+        array = new LocalDate[sizeDefault];
     }
 
-    @Override
-    public void add(T value) {
-        T[] temp = (T[]) new Object[array.length + 1];
+    public void add(LocalDate value) {
+        LocalDate[] temp = new LocalDate[array.length + 1];
 
         for (int i = 0; i < array.length; i++) {
             temp[i] = array[i];
@@ -27,13 +27,12 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         array = temp;
     }
 
-    @Override
     public int size() {
         return array.length;
     }
 
-    @Override
-    public int indexOf(T value) {
+
+    public int indexOf(LocalDate value) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) return i;
         }
@@ -41,8 +40,7 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         return -1;
     }
 
-    @Override
-    public boolean contains(T value) {
+    public boolean contains(LocalDate value) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) return true;
         }
@@ -50,8 +48,7 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         return false;
     }
 
-    @Override
-    public boolean remove(T value) {
+    public boolean remove(LocalDate value) {
         int index = -1;
 
         for (int i = 0; i < array.length; i++) {
@@ -62,7 +59,7 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         }
 
         if (index != -1) {
-            T[] temp = (T[]) new Object[array.length - 1];
+            LocalDate[] temp = new LocalDate[array.length - 1];
             int counter = 0;
 
             for (int i = 0; i < array.length; i++) {
@@ -76,15 +73,14 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         return false;
     }
 
-    @Override
-    public T remove(int index) {
-        T removedItem;
+    public LocalDate remove(int index) {
+        LocalDate removedItem;
 
         if (index >= 0 && index <= array.length - 1) {
             removedItem = array[index];
             array[index] = null;
 
-            T[] temp = (T[]) new Object[array.length - 1];
+            LocalDate[] temp = new LocalDate[array.length - 1];
             int counter = 0;
 
             for (int i = 0; i < array.length; i++) {
@@ -98,36 +94,29 @@ public class MyIterableArrayList<T> implements MyList<T>, Iterable<T> {
         }
     }
 
-    @Override
     public boolean isEmpty() {
         return array.length == 0;
     }
 
-    @Override
-    public T get(int index) {
+    public LocalDate get(int index) {
         if (index >= 0 && index <= array.length - 1)
             return array[index];
         else
             return null;
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator();
-    }
+    public long dayDifference() {
+        LocalDate earliest = array[0];
+        LocalDate latest = array[0];
 
-    private class MyIterator implements Iterator<T> {
-        private int pointer = 0;
-
-        @Override
-        public boolean hasNext() {
-            return pointer < array.length;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i].compareTo(earliest) < 0)
+                earliest = array[i];
+            if(array[i].compareTo(latest) > 0)
+                latest = array[i];
         }
 
-        @Override
-        public T next() {
-            return array[pointer++];
-        }
+        return ChronoUnit.DAYS.between(earliest, latest);
     }
 }
 
